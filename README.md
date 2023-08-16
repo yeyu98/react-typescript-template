@@ -22,7 +22,16 @@ This is a react, ts, less template.
 # 配置
 - entry
 - output
-
+- module （loader）
+  - babel-loader
+  - @babel/core：babel核心功能 其他都以预设形式添加（类似于插件）；
+  - jsx、ts的loader：需要通过babel
+    - @babel/preset-react：解析jsx语法；
+    - @babel/preset-typescript：解析ts语法；
+- resolve
+  - extensions: 配置改配置项之后引入模块就无须使用后缀，高频出现的放后面；
+- plugins
+  - html-webpack-plugin：设置index.html文件可以使用自定义模板；
 
 # 项目目录
 
