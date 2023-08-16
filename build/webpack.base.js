@@ -2,7 +2,7 @@
  * @Author: lzy-Jerry
  * @Date: 2023-08-16 21:05:57
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-16 23:06:57
+ * @LastEditTime: 2023-08-16 23:40:17
  * @Description: 
  */
 
@@ -30,22 +30,12 @@ module.exports = {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            // 解析从下向上，从右往左
-            options: {
-              presets: [
-                '@babel/preset-react',
-                '@babel/preset-typescript'
-              ]
-            }
-          }
-        ]
+        use: 'babel-loader'
       },
       {
         test: /\.(css|less)$/,
         use: [
+          // 解析从下向上，从右往左
           'style-loader',
           'css-loader',
           'postcss-loader',

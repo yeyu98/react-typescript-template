@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-16 23:00:56
+ * @LastEditTime: 2023-08-16 23:31:34
  * @FilePath: \NewExpore\react-typescript-template\README.md
  * @Description: 
 -->
@@ -61,6 +61,9 @@ webpack-merge：配置合并
 ## 处理CSS3在不同浏览器中的兼容
 - postcss-loader：为新特性或需要兼容的css属性添加前缀、压缩css；
 - autoprefixer：决定哪些浏览器需要添加前缀；
+## babel预设js兼容处理
+babel-preset: 将js转换为最新标准语法；
+core-js：垫片兼容用低版本语法模拟实现最新标准；
 # 项目目录
 
 ```
@@ -84,7 +87,9 @@ https://juejin.cn/post/7111922283681153038#heading-4
 
 
 
-
+# 原理
+## 不同类型模块的处理（如何磨平差异）
+## 文件监听与热更新
 
 
 
