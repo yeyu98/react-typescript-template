@@ -1,9 +1,8 @@
 /*
- * @Author: xiaohu
- * @Date: 2023-08-16 10:30:32
+ * @Author: lzy-Jerry
+ * @Date: 2023-08-16 21:05:57
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-16 22:06:21
- * @FilePath: \react-typescript-template\build\webpack.base.js
+ * @LastEditTime: 2023-08-16 23:06:57
  * @Description: 
  */
 
@@ -11,6 +10,13 @@
 
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const { DefinePlugin } = require('webpack')
+
+const customEnvs = ['BASE_ENV']
+const definitions = {}
+customEnvs.forEach(_env => {
+  definitions[`process.env.${_env}`] = JSON.stringify(process.env[_env])
+})
 
 module.exports = {
   entry:  path.resolve(__dirname, '../src/index.tsx'),
@@ -36,6 +42,15 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(css|less)$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+          'less-loader'
+        ]
       }
     ]
   },
@@ -46,6 +61,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../index.html'),
       inject: true
-    })
+    }),
+    new DefinePlugin(definitions)
   ]
 }

@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-16 22:07:20
+ * @LastEditTime: 2023-08-16 23:00:56
  * @FilePath: \NewExpore\react-typescript-template\README.md
  * @Description: 
 -->
@@ -50,6 +50,17 @@ This is a react, ts, less template.
 webpack-dev-server：启动开发环境服务、热更新；
 webpack-merge：配置合并
 ## 生产环境配置
+# 基础功能配置
+## 环境变量配置
+- cross-env：设置环境变量
+- definePlugin：将环境变量注入webpack里面，NODE_ENV：cross-env内置，其他定义的环境变量需要通过
+## 样式处理
+- style-loader：将css插入到style标签中；
+- css-loader：解析css文件；
+- less-loader：解析less文件；
+## 处理CSS3在不同浏览器中的兼容
+- postcss-loader：为新特性或需要兼容的css属性添加前缀、压缩css；
+- autoprefixer：决定哪些浏览器需要添加前缀；
 # 项目目录
 
 ```
@@ -83,4 +94,5 @@ https://juejin.cn/post/7111922283681153038#heading-4
 
 
 # 问题记录
-- 在build文件使用mode：production时，配置index.tsx作为入口文件但似乎没有生效，此时添加一个index.js文件就行？
+- 在build文件使用mode：production时，配置index.tsx作为入口文件但似乎没有生效，此时添加一个index.js文件就行（目前没发现问题在哪先放放把）？
+- 为什么webpack无法监听配置文件的修改而vite可以做到呢？
