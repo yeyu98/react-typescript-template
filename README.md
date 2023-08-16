@@ -1,8 +1,8 @@
 <!--
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
- * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-16 14:03:09
+ * @LastEditors: lzy-Jerry
+ * @LastEditTime: 2023-08-16 22:07:20
  * @FilePath: \NewExpore\react-typescript-template\README.md
  * @Description: 
 -->
@@ -70,3 +70,17 @@ webpack-merge：配置合并
 
 
 https://juejin.cn/post/7111922283681153038#heading-4
+
+
+
+
+
+
+
+
+
+
+
+
+# 问题记录
+- 在build文件使用mode：production时，配置index.tsx作为入口文件但似乎没有生效，此时添加一个index.js文件就行？
