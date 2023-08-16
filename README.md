@@ -3,7 +3,15 @@ This is a react, ts, less template.
 
 # 技术栈
 - pnpm
-- react18
+- webpack webpack-cli （两个包分别都有哪些功能）
+  - webpack 
+  - webpack-cli：webpack命令行工具，webpack真正执行依赖于webpack-cli，在命令行中执行 webpack 命令，会执行 node_modules 下的 .bin 目录下的 webpack 文件；
+- react18 react-dom（两个包分别都有哪些功能）
+  - react：为开发者提供react开发中所需要使用的api；
+  - react-dom：渲染器，一般用于协调后渲染真实dom到界面上，这里所使用到的api更多的是createRoot；
+  - 类型依赖： @types/react @types/react-dom （这个有必要安装吗？？？）
+    - Typescript项目中有必要！！！ https://blog.csdn.net/qq_58459674/article/details/126773659
+- 配置文件如果用的ts就需要安装types/node
 - typescript
 - less
 - tailwinds
@@ -11,4 +19,24 @@ This is a react, ts, less template.
 - babel
 
 
+# 配置
+- entry
+- output
+
+
 # 项目目录
+
+```
+├── build
+|   ├── webpack.base.js # 公共配置
+|   ├── webpack.dev.js  # 开发环境配置
+|   └── webpack.prod.js # 打包环境配置
+├── public
+│   └── index.html # html模板
+├── src
+|   ├── App.tsx 
+│   └── index.tsx # react应用入口页面
+├── tsconfig.json  # ts配置
+└── package.json
+```
+- index.html tsconfig.json的配置是直接cv的，后续再去理清内容
