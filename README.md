@@ -1,3 +1,11 @@
+<!--
+ * @Author: xiaohu
+ * @Date: 2023-08-16 10:26:31
+ * @LastEditors: xiaohu
+ * @LastEditTime: 2023-08-16 14:03:09
+ * @FilePath: \NewExpore\react-typescript-template\README.md
+ * @Description: 
+-->
 # react-typescript-template
 This is a react, ts, less template.
 
@@ -20,6 +28,7 @@ This is a react, ts, less template.
 
 
 # 配置
+## 基本配置
 - entry
 - output
 - module （loader）
@@ -33,6 +42,14 @@ This is a react, ts, less template.
 - plugins
   - html-webpack-plugin：设置index.html文件可以使用自定义模板；
 
+## 开发环境配置
+- 合并配置
+- mode
+- devtool
+- devServer
+webpack-dev-server：启动开发环境服务、热更新；
+webpack-merge：配置合并
+## 生产环境配置
 # 项目目录
 
 ```
@@ -49,3 +66,7 @@ This is a react, ts, less template.
 └── package.json
 ```
 - index.html tsconfig.json的配置是直接cv的，后续再去理清内容
+
+
+
+https://juejin.cn/post/7111922283681153038#heading-4

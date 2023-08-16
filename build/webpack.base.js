@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:30:32
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-16 11:45:20
+ * @LastEditTime: 2023-08-16 11:52:53
  * @FilePath: \react-typescript-template\build\webpack.base.js
  * @Description: 
  */
@@ -10,6 +10,7 @@
 /** @type {import('webpack').Configuration} */
 
 const path = require("path")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
   entry: path.resolve(__dirname, "../src/index.tsx"),
@@ -36,5 +37,11 @@ module.exports = {
   },
   resolve: {
     extensions: ['js', 'tsx', 'ts']
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../public/index.html'),
+      inject: true
+    })
+  ]
 }
