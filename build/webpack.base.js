@@ -1,8 +1,8 @@
 /*
  * @Author: lzy-Jerry
  * @Date: 2023-08-16 21:05:57
- * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-16 23:40:17
+ * @LastEditors: xiaohu
+ * @LastEditTime: 2023-08-17 19:48:33
  * @Description: 
  */
 
@@ -41,10 +41,25 @@ module.exports = {
           'postcss-loader',
           'less-loader'
         ]
+      }, 
+      {
+        test: /\.(png|jpg|jpeg|gif|webp|svg)$/,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024 // 大于10kb移动到指定文件，否则转换成base64
+          }
+        },
+        generator: {
+          filename: 'static/images/[name][ext]'
+        }
       }
     ]
   },
   resolve: {
+    alias: {
+      '@': path.resolve(__dirname, '../src')
+    },
     extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
   plugins: [

@@ -15,6 +15,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react", // react18这里也可以改成react-jsx
+    "paths": {
+      "@": ["src/*"]
+    }
   },
   "include": [
     "src/**/*.ts",

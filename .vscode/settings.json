@@ -1,4 +1,7 @@
 {
+    "path-intellisense.mappings": {
+        "@": "${workspaceRoot}/src"
+    },
     "cSpell.words": [
         "corejs",
         "xiaohu"

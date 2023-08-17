@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:31:10
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-17 19:30:49
+ * @LastEditTime: 2023-08-17 19:36:02
  * @FilePath: \react-typescript-template\build\webpack.prod.js
  * @Description: 
  */
@@ -23,7 +23,6 @@ module.exports = merge(baseConfig, {
           from: path.resolve(__dirname, '../public'), to: path.resolve(__dirname, '../dist')
         }
       ]
-
     })
   ]
 })

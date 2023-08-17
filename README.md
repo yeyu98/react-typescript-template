@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-17 19:25:46
+ * @LastEditTime: 2023-08-17 19:35:21
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -67,6 +67,9 @@ webpack-merge：配置合并
 ## build复制public文件夹
 - 在开发模式中因为会启动devServer，可以通过服务直接配置访问，而在生产环境上如果不配置就无法访问到文件；
 - copy-webpack-plugin：打包的时候将public的文件直接copy到dist里；
+## 处理图片、字体、媒体文件
+- 图片处理
+  - file-loader & url-loader ===>>> asset-module
 # 项目目录
 
 ```
