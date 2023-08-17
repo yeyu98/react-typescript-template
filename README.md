@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-17 20:21:58
+ * @LastEditTime: 2023-08-17 20:26:09
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -75,6 +75,13 @@ webpack-merge：配置合并
 - 整体热更新需要通过配置devServer: {hot: true}；
 - 样式热更新是通过style-loader完成的；
 - react组件状态不发生改变的热更新需要通过  @pmmmwh/react-refresh-webpack-plugin react-refresh，当然hooks的更改会触发完全刷新；
+
+# 构建速度优化
+- 分析构建速度
+  - speed-measure-webpack-plugin分析构建打包时各个loader/plugins的耗时；
+  - 为了不影响开发构建/打包的速度我们可以单独开一个配置来做分析；
+
+
 # 项目目录
 
 ```
