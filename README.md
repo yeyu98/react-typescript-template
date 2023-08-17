@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-17 20:54:34
+ * @LastEditTime: 2023-08-17 20:59:47
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -89,6 +89,7 @@ webpack-merge：配置合并
 - 开启多线程loader
   - 在thread-loader之后的loader会建立一个线程池，仅将耗时的loader放进去因为开启多线程也需要启动时间大约在600ms左右
   - 这里只针对babel-loader使用， 1.44s --->>> 2.072kb （小项目会存在负优化操作还得是在大项目中使用，哈哈哈）
+- 缩小loader作用范围通过include、exclude，小项目目前没看到显著提升；
 # 项目目录
 
 ```

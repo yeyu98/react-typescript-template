@@ -2,7 +2,7 @@
  * @Author: lzy-Jerry
  * @Date: 2023-08-16 21:05:57
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-17 20:54:00
+ * @LastEditTime: 2023-08-17 20:58:28
  * @Description: 
  */
 
@@ -30,7 +30,8 @@ module.exports = {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        use: ['thread-loader', 'babel-loader']
+        use: ['thread-loader', 'babel-loader'],
+        include: [path.resolve(__dirname, '../src')]
       },
       {
         test: /\.(css|less)$/,
@@ -40,7 +41,8 @@ module.exports = {
           'css-loader',
           'postcss-loader',
           'less-loader'
-        ]
+        ],
+        exclude: ['/node_modules']
       }, 
       {
         test: /\.(png|jpg|jpeg|gif|webp|svg)$/,
@@ -52,7 +54,8 @@ module.exports = {
         },
         generator: {
           filename: 'static/images/[name][ext]'
-        }
+        },
+        exclude: ['/node_modules']
       },
       {
         test:/.(woff2?|eot|ttf|otf)$/, // 匹配字体图标文件
@@ -64,7 +67,8 @@ module.exports = {
         },
         generator: {
           filename: 'static/fonts/[name][ext]'
-        }
+        },
+        exclude: ['/node_modules']
       },
       {
         test:/.(mp4|webm|ogg|mp3|wav|flac|aac)$/, // 匹配媒体文件
@@ -76,7 +80,8 @@ module.exports = {
         },
         generator: {
           filename: 'static/media/[name][ext]'
-        }
+        },
+        exclude: ['/node_modules']
       },
     ]
   },
