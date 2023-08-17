@@ -2,7 +2,7 @@
  * @Author: lzy-Jerry
  * @Date: 2023-08-16 21:05:57
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-17 19:48:33
+ * @LastEditTime: 2023-08-17 20:09:39
  * @Description: 
  */
 
@@ -53,7 +53,31 @@ module.exports = {
         generator: {
           filename: 'static/images/[name][ext]'
         }
-      }
+      },
+      {
+        test:/.(woff2?|eot|ttf|otf)$/, // 匹配字体图标文件
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024 // 大于10kb移动到指定文件，否则转换成base64
+          }
+        },
+        generator: {
+          filename: 'static/fonts/[name][ext]'
+        }
+      },
+      {
+        test:/.(mp4|webm|ogg|mp3|wav|flac|aac)$/, // 匹配媒体文件
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024 // 大于10kb移动到指定文件，否则转换成base64
+          }
+        },
+        generator: {
+          filename: 'static/media/[name][ext]'
+        }
+      },
     ]
   },
   resolve: {
