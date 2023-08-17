@@ -2,7 +2,7 @@
  * @Author: lzy-Jerry
  * @Date: 2023-08-16 21:05:57
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-17 20:09:39
+ * @LastEditTime: 2023-08-17 20:41:02
  * @Description: 
  */
 
@@ -92,5 +92,8 @@ module.exports = {
       inject: true
     }),
     new DefinePlugin(definitions)
-  ]
+  ],
+  cache: {
+    type: "filesystem" // 使用文件缓存
+  }
 }

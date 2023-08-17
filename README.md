@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-17 20:26:09
+ * @LastEditTime: 2023-08-17 20:46:07
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -80,8 +80,12 @@ webpack-merge：配置合并
 - 分析构建速度
   - speed-measure-webpack-plugin分析构建打包时各个loader/plugins的耗时；
   - 为了不影响开发构建/打包的速度我们可以单独开一个配置来做分析；
-
-
+- 开启持久化存储缓存
+  - 在webpack5之前做缓存是使用babel-loader缓存解决js的解析结果,cache-loader缓存css等资源的解析结果,还有模块缓存插件hard-source-webpack-plugin,配置好缓存后第二次打包,通过对文件做哈希对比来验证文件前后是否一致,如果一致则采用上一次的缓存,可以极大地节省时间；
+  - webpack5内置缓存配置；
+    - 本项目启动 6725ms --->>> 2237ms !!!
+    - 本项目打包 7323ms --->>> 1587ms !!!
+  - 我擦，持久化缓存巨强好吧，我吹爆！！！
 # 项目目录
 
 ```
