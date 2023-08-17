@@ -1,9 +1,9 @@
 <!--
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
- * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-16 23:31:34
- * @FilePath: \NewExpore\react-typescript-template\README.md
+ * @LastEditors: xiaohu
+ * @LastEditTime: 2023-08-17 19:25:46
+ * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
 # react-typescript-template
@@ -62,8 +62,11 @@ webpack-merge：配置合并
 - postcss-loader：为新特性或需要兼容的css属性添加前缀、压缩css；
 - autoprefixer：决定哪些浏览器需要添加前缀；
 ## babel预设js兼容处理
-babel-preset: 将js转换为最新标准语法；
-core-js：垫片兼容用低版本语法模拟实现最新标准；
+- babel-preset: 将js转换为最新标准语法；
+- core-js：垫片兼容用低版本语法模拟实现最新标准；
+## build复制public文件夹
+- 在开发模式中因为会启动devServer，可以通过服务直接配置访问，而在生产环境上如果不配置就无法访问到文件；
+- copy-webpack-plugin：打包的时候将public的文件直接copy到dist里；
 # 项目目录
 
 ```
@@ -100,4 +103,5 @@ https://juejin.cn/post/7111922283681153038#heading-4
 
 # 问题记录
 - 在build文件使用mode：production时，配置index.tsx作为入口文件但似乎没有生效，此时添加一个index.js文件就行（目前没发现问题在哪先放放把）？
+  - 完结是因为merge配置的时候merge导入的文件导错了 ~_~ ;
 - 为什么webpack无法监听配置文件的修改而vite可以做到呢？
