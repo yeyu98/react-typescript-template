@@ -2,7 +2,7 @@
  * @Author: lzy-Jerry
  * @Date: 2023-08-16 21:05:57
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-17 20:41:02
+ * @LastEditTime: 2023-08-17 20:54:00
  * @Description: 
  */
 
@@ -30,7 +30,7 @@ module.exports = {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        use: 'babel-loader'
+        use: ['thread-loader', 'babel-loader']
       },
       {
         test: /\.(css|less)$/,

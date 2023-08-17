@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-17 20:46:07
+ * @LastEditTime: 2023-08-17 20:54:34
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -86,6 +86,9 @@ webpack-merge：配置合并
     - 本项目启动 6725ms --->>> 2237ms !!!
     - 本项目打包 7323ms --->>> 1587ms !!!
   - 我擦，持久化缓存巨强好吧，我吹爆！！！
+- 开启多线程loader
+  - 在thread-loader之后的loader会建立一个线程池，仅将耗时的loader放进去因为开启多线程也需要启动时间大约在600ms左右
+  - 这里只针对babel-loader使用， 1.44s --->>> 2.072kb （小项目会存在负优化操作还得是在大项目中使用，哈哈哈）
 # 项目目录
 
 ```
