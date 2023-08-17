@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-17 19:35:21
+ * @LastEditTime: 2023-08-17 20:21:58
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -69,7 +69,12 @@ webpack-merge：配置合并
 - copy-webpack-plugin：打包的时候将public的文件直接copy到dist里；
 ## 处理图片、字体、媒体文件
 - 图片处理
-  - file-loader & url-loader ===>>> asset-module
+  - file-loader & url-loader ===>>> asset
+  - raw-loader
+## 热更新
+- 整体热更新需要通过配置devServer: {hot: true}；
+- 样式热更新是通过style-loader完成的；
+- react组件状态不发生改变的热更新需要通过  @pmmmwh/react-refresh-webpack-plugin react-refresh，当然hooks的更改会触发完全刷新；
 # 项目目录
 
 ```

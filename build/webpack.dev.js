@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:31:02
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-16 15:05:05
+ * @LastEditTime: 2023-08-17 20:16:46
  * @FilePath: \react-typescript-template\build\webpack.dev.js
  * @Description: 
  */
@@ -11,6 +11,7 @@
 const path = require("path")
 const {merge} = require("webpack-merge")
 const baseConfig = require("./webpack.base")
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = merge(baseConfig, {
   mode: 'development',
@@ -24,5 +25,8 @@ module.exports = merge(baseConfig, {
     static: {
       directory: path.resolve(__dirname, '../public') // 配置直接访问public里的静态文件
     }
-  }
+  },
+  plugins: [
+    new ReactRefreshWebpackPlugin()
+  ]
 })
