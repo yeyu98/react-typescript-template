@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-18 22:03:50
+ * @LastEditTime: 2023-08-18 22:31:05
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -90,7 +90,17 @@ webpack-merge：配置合并
   - 在thread-loader之后的loader会建立一个线程池，仅将耗时的loader放进去因为开启多线程也需要启动时间大约在600ms左右
   - 这里只针对babel-loader使用， 1.44s --->>> 2.072kb （小项目会存在负优化操作还得是在大项目中使用，哈哈哈）
 - 缩小loader作用范围通过include、exclude，小项目目前没看到显著提升；
-- 精准使用loader
+- 精准使用loader（有显著的性能提升构建时间缩短个100+ms）
+  - 针对不同类型的文件需要精准使用一种loader去解析，比如css文件如果同时使用less-loader先去解析会增加构建的时间，所以这里会精准拆分开；
+  - 针对ts、tsx、less、css精准使用各自的loader；
+    - dev 4204 --->>> 3930
+    - prod 4756 --->>> 4688
+- sourcemap
+  - 开发环境推荐eval-cheap-module-source-map
+  - 生产环境不推荐使用
+# 优化构建结果包体积大小
+- webpack包分析工具
+  - webpack-bundle-analyzer 
 # 项目目录
 
 ```

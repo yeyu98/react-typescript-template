@@ -1,8 +1,8 @@
 /*
  * @Author: lzy-Jerry
  * @Date: 2023-08-16 21:05:57
- * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-17 20:58:28
+ * @LastEditors: lzy-Jerry
+ * @LastEditTime: 2023-08-18 22:27:21
  * @Description: 
  */
 
@@ -28,15 +28,48 @@ module.exports = {
   },
   module: {
     rules: [
+      // NOTE 针对ts使用局部的预设配置
       {
-        test: /\.(ts|tsx)$/,
+        test: /\.ts$/,
+        use: [
+          'thread-loader', 
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    'useBuiltIns': 'usage',
+                    'corejs': 3 
+                  }
+                ],
+                '@babel/preset-typescript'
+              ]
+            }
+          }
+        ],
+        include: [path.resolve(__dirname, '../src')]
+      },
+      // NOTE 针对tsx使用全局的babel config
+      {
+        test: /\.tsx$/,
         use: ['thread-loader', 'babel-loader'],
         include: [path.resolve(__dirname, '../src')]
       },
       {
-        test: /\.(css|less)$/,
+        test: /\.css$/,
         use: [
           // 解析从下向上，从右往左
+          'style-loader',
+          'css-loader',
+          'postcss-loader'
+        ],
+        exclude: ['/node_modules']
+      }, 
+      {
+        test: /\.less$/,
+        use: [
           'style-loader',
           'css-loader',
           'postcss-loader',
@@ -44,6 +77,7 @@ module.exports = {
         ],
         exclude: ['/node_modules']
       }, 
+      // NOTE 图片资源处理
       {
         test: /\.(png|jpg|jpeg|gif|webp|svg)$/,
         type: 'asset',
@@ -57,6 +91,7 @@ module.exports = {
         },
         exclude: ['/node_modules']
       },
+      // NOTE 字体资源处理
       {
         test:/.(woff2?|eot|ttf|otf)$/, // 匹配字体图标文件
         type: 'asset',
@@ -70,6 +105,7 @@ module.exports = {
         },
         exclude: ['/node_modules']
       },
+      // NOTE 媒体资源处理
       {
         test:/.(mp4|webm|ogg|mp3|wav|flac|aac)$/, // 匹配媒体文件
         type: 'asset',
