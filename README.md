@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-18 22:31:05
+ * @LastEditTime: 2023-08-18 22:56:53
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -101,6 +101,12 @@ webpack-merge：配置合并
 # 优化构建结果包体积大小
 - webpack包分析工具
   - webpack-bundle-analyzer 
+- 抽离css文件
+  - 开发模式下将css嵌入到style标签中可以走style-loader的热更新替换；
+  - 打包模式下更需要将其抽离到单独的文件中方便做缓存策略，此时需要用到MiniCssExtractPlugin.loader 和 MiniCssExtractPlugin()；
+  - mini-css-extract-plugin
+- 压缩css文件
+  - css-minimizer-webpack-plugin 
 # 项目目录
 
 ```

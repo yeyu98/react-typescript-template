@@ -2,7 +2,7 @@
  * @Author: lzy-Jerry
  * @Date: 2023-08-16 21:05:57
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-18 22:27:21
+ * @LastEditTime: 2023-08-18 22:45:18
  * @Description: 
  */
 
@@ -11,6 +11,9 @@
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { DefinePlugin } = require('webpack')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+const isDev = process.env.NODE_ENV === 'development'
 
 const customEnvs = ['BASE_ENV']
 const definitions = {}
@@ -61,7 +64,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           // 解析从下向上，从右往左
-          'style-loader',
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader'
         ],
@@ -70,7 +73,7 @@ module.exports = {
       {
         test: /\.less$/,
         use: [
-          'style-loader',
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
           'less-loader'
@@ -128,11 +131,13 @@ module.exports = {
     extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
   plugins: [
+    // NOTE 自定义处理index.html
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../index.html'),
       inject: true
     }),
-    new DefinePlugin(definitions)
+    // NOTE 注入自定义环境变量
+    new DefinePlugin(definitions),
   ],
   cache: {
     type: "filesystem" // 使用文件缓存
