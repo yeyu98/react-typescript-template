@@ -3,6 +3,7 @@
         "@": "${workspaceRoot}/src"
     },
     "cSpell.words": [
+        "analy",
         "corejs",
         "pmmmwh",
         "xiaohu"

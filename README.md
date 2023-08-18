@@ -1,8 +1,8 @@
 <!--
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
- * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-17 20:59:47
+ * @LastEditors: lzy-Jerry
+ * @LastEditTime: 2023-08-18 22:03:50
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -51,30 +51,30 @@ webpack-dev-server：启动开发环境服务、热更新；
 webpack-merge：配置合并
 ## 生产环境配置
 # 基础功能配置
-## 环境变量配置
-- cross-env：设置环境变量
-- definePlugin：将环境变量注入webpack里面，NODE_ENV：cross-env内置，其他定义的环境变量需要通过
-## 样式处理
-- style-loader：将css插入到style标签中；
-- css-loader：解析css文件；
-- less-loader：解析less文件；
-## 处理CSS3在不同浏览器中的兼容
-- postcss-loader：为新特性或需要兼容的css属性添加前缀、压缩css；
-- autoprefixer：决定哪些浏览器需要添加前缀；
-## babel预设js兼容处理
-- babel-preset: 将js转换为最新标准语法；
-- core-js：垫片兼容用低版本语法模拟实现最新标准；
-## build复制public文件夹
-- 在开发模式中因为会启动devServer，可以通过服务直接配置访问，而在生产环境上如果不配置就无法访问到文件；
-- copy-webpack-plugin：打包的时候将public的文件直接copy到dist里；
-## 处理图片、字体、媒体文件
-- 图片处理
-  - file-loader & url-loader ===>>> asset
-  - raw-loader
-## 热更新
-- 整体热更新需要通过配置devServer: {hot: true}；
-- 样式热更新是通过style-loader完成的；
-- react组件状态不发生改变的热更新需要通过  @pmmmwh/react-refresh-webpack-plugin react-refresh，当然hooks的更改会触发完全刷新；
+- 环境变量配置
+  - cross-env：设置环境变量
+  - definePlugin：将环境变量注入webpack里面，NODE_ENV：cross-env内置，其他定义的环境变量需要通过
+- 样式处理
+  - style-loader：将css插入到style标签中；
+  - css-loader：解析css文件；
+  - less-loader：解析less文件；
+- 处理CSS3在不同浏览器中的兼容
+  - postcss-loader：为新特性或需要兼容的css属性添加前缀、压缩css；
+  - autoprefixer：决定哪些浏览器需要添加前缀；
+- babel预设js兼容处理
+  - babel-preset: 将js转换为最新标准语法；
+  - core-js：垫片兼容用低版本语法模拟实现最新标准；
+- build复制public文件夹
+  - 在开发模式中因为会启动devServer，可以通过服务直接配置访问，而在生产环境上如果不配置就无法访问到文件；
+  - copy-webpack-plugin：打包的时候将public的文件直接copy到dist里；
+- 处理图片、字体、媒体文件
+  - 图片处理
+    - file-loader & url-loader ===>>> asset
+    - raw-loader
+- 热更新
+  - 整体热更新需要通过配置devServer: {hot: true}；
+  - 样式热更新是通过style-loader完成的；
+  - react组件状态不发生改变的热更新需要通过  @pmmmwh/react-refresh-webpack-plugin react-refresh，当然hooks的更改会触发完全刷新；
 
 # 构建速度优化
 - 分析构建速度
@@ -90,6 +90,7 @@ webpack-merge：配置合并
   - 在thread-loader之后的loader会建立一个线程池，仅将耗时的loader放进去因为开启多线程也需要启动时间大约在600ms左右
   - 这里只针对babel-loader使用， 1.44s --->>> 2.072kb （小项目会存在负优化操作还得是在大项目中使用，哈哈哈）
 - 缩小loader作用范围通过include、exclude，小项目目前没看到显著提升；
+- 精准使用loader
 # 项目目录
 
 ```
