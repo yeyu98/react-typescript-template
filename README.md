@@ -1,8 +1,8 @@
 <!--
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
- * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-20 11:16:21
+ * @LastEditors: xiaohu
+ * @LastEditTime: 2023-08-20 16:25:24
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -123,6 +123,12 @@ webpack-merge：配置合并
   - 拆分node_modules为单独的chunk，因为第三方模块变化的几率相对来说比较小；
   - 拆分公共模块chunk；
   - 再就是业务chunk；
+- tree-shaking
+  - 针对js：webpack5默认启用；
+  - 针对css：purgecss-webpack-plugin、min-css-extract-plugin、glob-all
+    - purgecss-webpack-plugin移除未使用css（太强啦！！！）；
+      - 主要针对id、class、标签的样式tree-shaking；
+    - glob-all作用等同于import.glob 可以批量导入模块；
 # 自定义plugin
 # 项目目录
 
@@ -150,6 +156,7 @@ https://juejin.cn/post/7111922283681153038#heading-4
 # 原理
 ## 不同类型模块的处理（如何磨平差异）
 ## 文件监听与热更新
+## tree-shaking
 
 
 

@@ -1,12 +1,14 @@
 /*
  * @Author: xiaohu
  * @Date: 2023-08-16 10:31:41
- * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-20 11:25:36
+ * @LastEditors: xiaohu
+ * @LastEditTime: 2023-08-20 16:24:41
  * @FilePath: \react-typescript-template\src\App.tsx
  * @Description: 
  */
 import React, { useState }  from 'react'
+import Demo from "@/components/Demo"
+import DemoTwo from "@/components/DemoTwo"
 import fivekb from "@/assets/images/5kb.png"
 import twitykb from "@/assets/images/22kb.png"
 import './App.less'
@@ -35,8 +37,9 @@ function App(props: Props) {
       <p>受控组件</p>
       <input type="text" value={count} onChange={onChange} />
       <br />
-      <p>非受控组件</p>
+      <p className='no-use'>非受控组件</p>
       <input type="text" />
+      <Demo />
     </>
   )
 }

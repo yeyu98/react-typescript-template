@@ -1,14 +1,15 @@
 /*
  * @Author: xiaohu
  * @Date: 2023-08-16 10:31:10
- * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-20 11:23:32
+ * @LastEditors: xiaohu
+ * @LastEditTime: 2023-08-20 16:22:26
  * @FilePath: \react-typescript-template\build\webpack.prod.js
  * @Description: 
  */
 
 /** @type {import('webpack').Configuration} */
 
+const globAll = require('glob-all')
 const path = require("path")
 const {merge} = require("webpack-merge")
 const baseConfig = require("./webpack.base")
@@ -16,6 +17,7 @@ const CopyPlugin  = require("copy-webpack-plugin")
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
+const { PurgeCSSPlugin } = require('purgecss-webpack-plugin')
 // NOTE 自定义插件用于计算打包后的dist文件大小
 // const BuildFileSizePlugin = require('../plugins/BuildFileSizePlugin.ts')
 
@@ -34,7 +36,7 @@ module.exports = merge(baseConfig, {
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[contenthash:8].css'
     }),
-    // NOTE 压缩css === 丑化js
+    // NOTE 压缩css
     new CssMinimizerPlugin(),
     // NOTE 多线程压缩js
     new TerserPlugin({
@@ -45,6 +47,13 @@ module.exports = merge(baseConfig, {
         }
       }
     }),
+    // NOTE 清除未使用css
+    new PurgeCSSPlugin({
+      paths: globAll.sync([
+        `${path.resolve(__dirname, '../src')}/**/*.tsx`,
+        path.resolve(__dirname, '../index.html')
+      ])
+    })
     // NOTE 计算打包后dist文件大小
     // new BuildFileSizePlugin()
   ],
