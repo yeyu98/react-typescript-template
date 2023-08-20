@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-18 22:56:53
+ * @LastEditTime: 2023-08-20 10:49:36
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -107,6 +107,13 @@ webpack-merge：配置合并
   - mini-css-extract-plugin
 - 压缩css文件
   - css-minimizer-webpack-plugin 
+  - 280kb
+- 压缩js文件
+  - webpack5本身具备和默认开启多线程压缩的能力，如果需要自定义压缩js的配置那么需要手动安装 terser-webpack-plugin；
+    - 可配置打包删除指定函数；
+    - `terser-webpack-plugin` 和 `uglifyjs-webpack-plugin` 的功能大致相同唯一不同在于前者支持ES5同时也支持ES6的语法；
+
+# 自定义plugin
 # 项目目录
 
 ```

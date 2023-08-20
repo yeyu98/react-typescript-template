@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:31:10
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-18 22:57:59
+ * @LastEditTime: 2023-08-20 10:49:23
  * @FilePath: \react-typescript-template\build\webpack.prod.js
  * @Description: 
  */
@@ -15,6 +15,9 @@ const baseConfig = require("./webpack.base")
 const CopyPlugin  = require("copy-webpack-plugin")
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+// NOTE 自定义插件用于计算打包后的dist文件大小
+const BuildFileSizePlugin = require('../plugins/BuildFileSizePlugin.ts')
 
 module.exports = merge(baseConfig, {
   mode: 'production',
@@ -32,6 +35,17 @@ module.exports = merge(baseConfig, {
       filename: 'static/css/[name].css'
     }),
     // NOTE 压缩css === 丑化js
-    new CssMinimizerPlugin()
+    new CssMinimizerPlugin(),
+    // NOTE 多线程压缩js
+    new TerserPlugin({
+      parallel: true,
+      terserOptions: {
+        compress: {
+          pure_funcs: ['console.log'] // 删除指定函数
+        }
+      }
+    }),
+    // NOTE 计算打包后dist文件大小
+    new BuildFileSizePlugin()
   ]
 })
