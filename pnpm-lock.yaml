@@ -11,6 +11,7 @@ specifiers:
   '@types/react-dom': ^18.2.7
   autoprefixer: ^10.4.15
   babel-loader: ^9.1.3
+  compression-webpack-plugin: ^10.0.0
   copy-webpack-plugin: ^11.0.0
   core-js: ^3.32.0
   cross-env: ^7.0.3
@@ -52,6 +53,7 @@ devDependencies:
   '@types/react-dom': 18.2.7
   autoprefixer: 10.4.15
   babel-loader: 9.1.3_a7bz5yhgcoab2comip4bcc2pf4
+  compression-webpack-plugin: 10.0.0_webpack@5.88.2
   copy-webpack-plugin: 11.0.0_webpack@5.88.2
   core-js: 3.32.0
   css-loader: 6.8.1_webpack@5.88.2
@@ -2261,6 +2263,17 @@ packages:
     engines: {node: '>= 0.6'}
     dependencies:
       mime-db: 1.52.0
+    dev: true
+
+  /compression-webpack-plugin/10.0.0_webpack@5.88.2:
+    resolution: {integrity: sha512-wLXLIBwpul/ALcm7Aj+69X0pYT3BYt6DdPn3qrgBIh9YejV9Bju9ShhlAsjujLyWMo6SAweFIWaUoFmXZNuNrg==}
+    engines: {node: '>= 14.15.0'}
+    peerDependencies:
+      webpack: ^5.1.0
+    dependencies:
+      schema-utils: 4.2.0
+      serialize-javascript: 6.0.1
+      webpack: 5.88.2_webpack-cli@5.1.4
     dev: true
 
   /compression/1.7.4:

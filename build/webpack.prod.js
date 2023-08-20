@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:31:10
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-20 16:32:51
+ * @LastEditTime: 2023-08-20 17:32:33
  * @FilePath: \react-typescript-template\build\webpack.prod.js
  * @Description: 
  */
@@ -18,13 +18,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const { PurgeCSSPlugin } = require('purgecss-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
 // NOTE 自定义插件用于计算打包后的dist文件大小
 // const BuildFileSizePlugin = require('../plugins/BuildFileSizePlugin.ts')
-
-console.log(JSON.stringify(globAll.sync([
-  `${path.resolve(__dirname, '../src')}/**/*.tsx`,
-  path.resolve(__dirname, '../index.html')
-])))
 
 module.exports = merge(baseConfig, {
   mode: 'production',
@@ -61,6 +57,14 @@ module.exports = merge(baseConfig, {
       safelist: {
         standard: [/^ant-/] // 该插件无法识别第三方组件库所使用的类名，所以可以添加白名单
       }
+    }),
+    // NOTE gzip压缩
+    new CompressionPlugin({
+      test: /.(css|js)$/, // 只压缩js css文件
+      filename: '[path][base].gz', // 压缩文件名
+      algorithm: 'gzip', // 压缩算法
+      threshold: 10240, // 单文件超过10K则进行压缩
+      minRatio: .8 // 压缩率
     })
     // NOTE 计算打包后dist文件大小
     // new BuildFileSizePlugin()
