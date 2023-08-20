@@ -1,8 +1,8 @@
 /*
  * @Author: xiaohu
  * @Date: 2023-08-16 10:31:41
- * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-17 20:20:18
+ * @LastEditors: lzy-Jerry
+ * @LastEditTime: 2023-08-20 11:25:36
  * @FilePath: \react-typescript-template\src\App.tsx
  * @Description: 
  */
@@ -20,6 +20,7 @@ function App(props: Props) {
 
   const [ count, setCounts ] = useState('')
   const onChange = (e: any) => {
+    console.log(e)
     setCounts(e.target.value)
   }
 

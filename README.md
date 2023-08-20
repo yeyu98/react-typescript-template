@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-20 11:05:49
+ * @LastEditTime: 2023-08-20 11:16:21
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -119,6 +119,10 @@ webpack-merge：配置合并
     - chunkhash：根据不同入口文件进行文件解析、依赖构建生成的chunk（可能是多个文件）hash，当某个chunk发生改变或者它的依赖文件发生改变则会重新生成hash；
     - contenthash：根据文件内容生成hash值，每个文件都有自己的hash值，当文件本身发生改变就会重新生成hash值；
   - 针对有依赖的文件可以使用chunkhash，没有依赖的文件使用contenthash；
+- 代码分割（拆分不同chunk设置缓存组）
+  - 拆分node_modules为单独的chunk，因为第三方模块变化的几率相对来说比较小；
+  - 拆分公共模块chunk；
+  - 再就是业务chunk；
 # 自定义plugin
 # 项目目录
 

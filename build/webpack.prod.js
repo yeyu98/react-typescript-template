@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:31:10
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-20 11:06:55
+ * @LastEditTime: 2023-08-20 11:23:32
  * @FilePath: \react-typescript-template\build\webpack.prod.js
  * @Description: 
  */
@@ -17,7 +17,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 // NOTE 自定义插件用于计算打包后的dist文件大小
-const BuildFileSizePlugin = require('../plugins/BuildFileSizePlugin.ts')
+// const BuildFileSizePlugin = require('../plugins/BuildFileSizePlugin.ts')
 
 module.exports = merge(baseConfig, {
   mode: 'production',
@@ -46,6 +46,28 @@ module.exports = merge(baseConfig, {
       }
     }),
     // NOTE 计算打包后dist文件大小
-    new BuildFileSizePlugin()
-  ]
+    // new BuildFileSizePlugin()
+  ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        // 第三方模块单独拆一个chunk
+        vendors: {
+          test: /node_modules/, // 匹配node_modules
+          name: 'vendors',
+          minChunks: 1, // 使用一次就提取出来
+          chunks: 'initial', // 只提取初始化就能获取到的模块，排除异步模块
+          minSize: 0, // 体积大于1就提取
+          priority: 1 // 优先级最高
+        },
+        // 公共模块拆分成一个chunk
+        common: {
+          name: 'common',
+          minChunks: 2,
+          chunks: 'initial',
+          minSize: 0
+        }
+      }
+    } 
+  }
 })
