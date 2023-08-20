@@ -2,17 +2,27 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:31:41
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-20 16:53:36
+ * @LastEditTime: 2023-08-20 17:16:17
  * @FilePath: \react-typescript-template\src\App.tsx
  * @Description: 
  */
 import React, { Suspense, lazy, useEffect, useState }  from 'react'
 import Demo from "@/components/Demo"
+import DemoTwo from "@/components/DemoTwo"
 import fivekb from "@/assets/images/5kb.png"
 import twitykb from "@/assets/images/22kb.png"
 import './App.less'
 
-const LazyLoadDemoTwo = lazy(() => import("@/components/DemoTwo"))
+const LazyLoadPreFetchDemo = lazy(() => import(
+  /* webpackChunkName: "PreFetchDemo" */ 
+  /* webpackPrefetch: true */ 
+  "@/components/PreFetchDemo"
+))
+const LazyLoadPreLoadDemo = lazy(() => import(
+  /* webpackChunkName: "PreLoadDemo" */ 
+  /* webpackPreload: true */ 
+  "@/components/PreLoadDemo"
+))
 
 interface Props {}
 
@@ -49,7 +59,8 @@ function App(props: Props) {
       <button onClick={() => setShow(!show)}>加载</button>
       {
         show && <Suspense fallback={<div>加载中...</div>}>
-          <LazyLoadDemoTwo />
+          <LazyLoadPreFetchDemo />
+          <LazyLoadPreLoadDemo />
         </Suspense>
       }
     </>

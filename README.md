@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-20 16:54:44
+ * @LastEditTime: 2023-08-20 17:25:27
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -132,6 +132,11 @@ webpack-merge：配置合并
 - 资源懒加载
   - webpack默认支持资源懒加载,只需要引入资源使用import语法来引入资源,webpack打包的时候就会自动打包为单独的资源文件,等使用到的时候动态加载。
     - React里的组件懒加载需要通过lazy 结合 Suspense实现；
+- 资源预加载
+  - prefetch：在空闲的时候告诉浏览器先下载资源但不执行；
+  - preload：告诉浏览器先下载资源但不执行；
+  - 这两个属性只有在link标签中使用，link标签也可以导入js资源；
+  - 在webpack中可以通过 魔法注释里开启这两个属性；
 # 自定义plugin
 # 项目目录
 
