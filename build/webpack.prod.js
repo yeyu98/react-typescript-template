@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:31:10
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-20 16:22:26
+ * @LastEditTime: 2023-08-20 16:32:51
  * @FilePath: \react-typescript-template\build\webpack.prod.js
  * @Description: 
  */
@@ -20,6 +20,11 @@ const TerserPlugin = require('terser-webpack-plugin')
 const { PurgeCSSPlugin } = require('purgecss-webpack-plugin')
 // NOTE 自定义插件用于计算打包后的dist文件大小
 // const BuildFileSizePlugin = require('../plugins/BuildFileSizePlugin.ts')
+
+console.log(JSON.stringify(globAll.sync([
+  `${path.resolve(__dirname, '../src')}/**/*.tsx`,
+  path.resolve(__dirname, '../index.html')
+])))
 
 module.exports = merge(baseConfig, {
   mode: 'production',
@@ -52,7 +57,10 @@ module.exports = merge(baseConfig, {
       paths: globAll.sync([
         `${path.resolve(__dirname, '../src')}/**/*.tsx`,
         path.resolve(__dirname, '../index.html')
-      ])
+      ]),
+      safelist: {
+        standard: [/^ant-/] // 该插件无法识别第三方组件库所使用的类名，所以可以添加白名单
+      }
     })
     // NOTE 计算打包后dist文件大小
     // new BuildFileSizePlugin()
