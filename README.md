@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-20 16:25:24
+ * @LastEditTime: 2023-08-20 16:54:44
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -129,6 +129,9 @@ webpack-merge：配置合并
     - purgecss-webpack-plugin移除未使用css（太强啦！！！）；
       - 主要针对id、class、标签的样式tree-shaking；
     - glob-all作用等同于import.glob 可以批量导入模块；
+- 资源懒加载
+  - webpack默认支持资源懒加载,只需要引入资源使用import语法来引入资源,webpack打包的时候就会自动打包为单独的资源文件,等使用到的时候动态加载。
+    - React里的组件懒加载需要通过lazy 结合 Suspense实现；
 # 自定义plugin
 # 项目目录
 
