@@ -1,8 +1,8 @@
 <!--
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
- * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-20 17:48:28
+ * @LastEditors: lzy-Jerry
+ * @LastEditTime: 2023-08-20 22:48:42
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -140,6 +140,16 @@ webpack-merge：配置合并
 - 打包时生成gzip文件 √
   - compression-webpack-plugin：打包后压缩文件大小，主要压缩js、css文件；  
 # 自定义plugin
+complier.hooks.执行阶段.tap函数('插件名称', (阶段回调参数) => {})
+- complier对象：控制整个webpack执行流程，相当于流程控制器；
+- compilation对象：主要作用是对各个模块进行编译、依赖分析、优化、封装；
+  - buildModule：模块构建开始之前；
+  - seal：构建完成，封装；
+  - optimize：优化阶段触发；
+- Tapable
+  - tap：同步钩子；
+  - tapAsync：异步钩子通过callback告知webpack逻辑执行完成；
+  - tapPromise：异步钩子通过返回promise告知webpack逻辑执行完成；
 # 项目目录
 
 ```

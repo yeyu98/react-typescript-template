@@ -1,8 +1,8 @@
 /*
  * @Author: xiaohu
  * @Date: 2023-08-16 10:31:10
- * @LastEditors: xiaohu
- * @LastEditTime: 2023-08-20 17:32:33
+ * @LastEditors: lzy-Jerry
+ * @LastEditTime: 2023-08-20 22:54:29
  * @FilePath: \react-typescript-template\build\webpack.prod.js
  * @Description: 
  */
@@ -20,7 +20,7 @@ const TerserPlugin = require('terser-webpack-plugin')
 const { PurgeCSSPlugin } = require('purgecss-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 // NOTE 自定义插件用于计算打包后的dist文件大小
-// const BuildFileSizePlugin = require('../plugins/BuildFileSizePlugin.ts')
+const BuildFileSizePlugin = require('../plugins/BuildFileSizePlugin.ts')
 
 module.exports = merge(baseConfig, {
   mode: 'production',
@@ -65,9 +65,9 @@ module.exports = merge(baseConfig, {
       algorithm: 'gzip', // 压缩算法
       threshold: 10240, // 单文件超过10K则进行压缩
       minRatio: .8 // 压缩率
-    })
+    }),
     // NOTE 计算打包后dist文件大小
-    // new BuildFileSizePlugin()
+    new BuildFileSizePlugin()
   ],
   optimization: {
     splitChunks: {
