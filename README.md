@@ -179,3 +179,4 @@ https://juejin.cn/post/7111922283681153038#heading-4
 - 在build文件使用mode：production时，配置index.tsx作为入口文件但似乎没有生效，此时添加一个index.js文件就行（目前没发现问题在哪先放放把）？
   - 完结是因为merge配置的时候merge导入的文件导错了 ~_~ ;
 - 为什么webpack无法监听配置文件的修改而vite可以做到呢？
+  - 因为vite的配置文件最终只有一个 vite.config.ts ~_~;
