@@ -2,7 +2,7 @@
  * @Author: lzy-Jerry
  * @Date: 2023-08-16 21:05:57
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-18 22:45:18
+ * @LastEditTime: 2023-08-20 11:07:15
  * @Description: 
  */
 
@@ -24,7 +24,7 @@ customEnvs.forEach(_env => {
 module.exports = {
   entry:  path.resolve(__dirname, '../src/index.tsx'),
   output: {
-    filename: 'static/js/[name].js',
+    filename: 'static/js/[name].[chunkhash:8].js',
     path: path.resolve(__dirname, '../dist'),
     clean: true, // webpack5内置clean-webpack-plugin
     publicPath: '/' // 最终静态资源dist里文件的访问路径  ./static/js/[name].js
@@ -90,7 +90,7 @@ module.exports = {
           }
         },
         generator: {
-          filename: 'static/images/[name][ext]'
+          filename: 'static/images/[name].[contenthash:8][ext]'
         },
         exclude: ['/node_modules']
       },
@@ -104,7 +104,7 @@ module.exports = {
           }
         },
         generator: {
-          filename: 'static/fonts/[name][ext]'
+          filename: 'static/fonts/[name].[contenthash:8][ext]'
         },
         exclude: ['/node_modules']
       },
@@ -118,7 +118,7 @@ module.exports = {
           }
         },
         generator: {
-          filename: 'static/media/[name][ext]'
+          filename: 'static/media/[name].[contenthash:8][ext]'
         },
         exclude: ['/node_modules']
       },

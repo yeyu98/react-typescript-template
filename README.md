@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-20 10:49:36
+ * @LastEditTime: 2023-08-20 11:05:49
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -108,11 +108,17 @@ webpack-merge：配置合并
 - 压缩css文件
   - css-minimizer-webpack-plugin 
   - 280kb
-- 压缩js文件
+- 压缩js文件：webpack5默认支持
   - webpack5本身具备和默认开启多线程压缩的能力，如果需要自定义压缩js的配置那么需要手动安装 terser-webpack-plugin；
     - 可配置打包删除指定函数；
     - `terser-webpack-plugin` 和 `uglifyjs-webpack-plugin` 的功能大致相同唯一不同在于前者支持ES5同时也支持ES6的语法；
-
+- 合理配置文件名hash值
+  - 配置文件名hash值当文件hash值未发生改变时可以走浏览器的缓存策略而不需要重新加载对应的文件，提升页面加载速度减轻服务器压力；
+  - hash类型
+    - hash：打包后所有的文件共有一个hash值，当整个应用中的某个文件发生改变hash值就会发生变化（这个真的有使用的场景吗？）；
+    - chunkhash：根据不同入口文件进行文件解析、依赖构建生成的chunk（可能是多个文件）hash，当某个chunk发生改变或者它的依赖文件发生改变则会重新生成hash；
+    - contenthash：根据文件内容生成hash值，每个文件都有自己的hash值，当文件本身发生改变就会重新生成hash值；
+  - 针对有依赖的文件可以使用chunkhash，没有依赖的文件使用contenthash；
 # 自定义plugin
 # 项目目录
 

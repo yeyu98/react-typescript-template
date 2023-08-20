@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:31:10
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-20 10:49:23
+ * @LastEditTime: 2023-08-20 11:06:55
  * @FilePath: \react-typescript-template\build\webpack.prod.js
  * @Description: 
  */
@@ -32,7 +32,7 @@ module.exports = merge(baseConfig, {
     }),
     // NOTE 抽离css成单独文件
     new MiniCssExtractPlugin({
-      filename: 'static/css/[name].css'
+      filename: 'static/css/[name].[contenthash:8].css'
     }),
     // NOTE 压缩css === 丑化js
     new CssMinimizerPlugin(),
