@@ -2,7 +2,7 @@
  * @Author: lzy-Jerry
  * @Date: 2023-08-16 21:05:57
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-20 11:07:15
+ * @LastEditTime: 2023-08-22 23:12:43
  * @Description: 
  */
 
@@ -132,12 +132,12 @@ module.exports = {
   },
   plugins: [
     // NOTE 自定义处理index.html
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../index.html'),
-      inject: true
-    }),
-    // NOTE 注入自定义环境变量
-    new DefinePlugin(definitions),
+    // new HtmlWebpackPlugin({
+    //   template: path.resolve(__dirname, '../index.html'),
+    //   inject: true
+    // }),
+    // // NOTE 注入自定义环境变量
+    // new DefinePlugin(definitions),
   ],
   cache: {
     type: "filesystem" // 使用文件缓存
