@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-20 22:48:42
+ * @LastEditTime: 2023-08-21 22:07:32
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -140,16 +140,29 @@ webpack-merge：配置合并
 - 打包时生成gzip文件 √
   - compression-webpack-plugin：打包后压缩文件大小，主要压缩js、css文件；  
 # 自定义plugin
+
+- webpack构建流程
+- `<a>https://blog.csdn.net/zxd1435513775/article/details/125386977</a>`
+
 complier.hooks.执行阶段.tap函数('插件名称', (阶段回调参数) => {})
 - complier对象：控制整个webpack执行流程，相当于流程控制器；
-- compilation对象：主要作用是对各个模块进行编译、依赖分析、优化、封装；
-  - buildModule：模块构建开始之前；
-  - seal：构建完成，封装；
-  - optimize：优化阶段触发；
+- compilation对象：主要作用是对各个模块进行编译、依赖分析、优化、封存；
+  - compilation
+    - modules：可以访问所有的模块，每个文件对应着一个模块；
+    - chunks：由多个modules组成的chunk，例如我们项目中拆分出来的vendors是一个chunk，main是一个chunk，common是一个chunk；
+    - assets：可以获取到所有的打包结果；
+      - 如果需要修改某个dist文件里面的内容需要通过source以及size来改变；
+    - hooks：compilation对应的hook用于compilation编译模块时在不同的阶段添加或修改逻辑；
+      - buildModule：模块构建开始之前；
+      - seal：构建完成，封装；
+      - optimize：优化阶段触发；
+      - reviveChunks：整理chunks；
+      - seal
 - Tapable
   - tap：同步钩子；
   - tapAsync：异步钩子通过callback告知webpack逻辑执行完成；
   - tapPromise：异步钩子通过返回promise告知webpack逻辑执行完成；
+# 自定义loader
 # 项目目录
 
 ```
@@ -190,3 +203,19 @@ https://juejin.cn/post/7111922283681153038#heading-4
   - 完结是因为merge配置的时候merge导入的文件导错了 ~_~ ;
 - 为什么webpack无法监听配置文件的修改而vite可以做到呢？
   - 因为vite的配置文件最终只有一个 vite.config.ts ~_~;
+
+
+# 关于debug
+首先呢我们整个debug需要通过node 自带的 inspect 来debugger 特定的文件
+我们在package.json里的脚本配置如下
+--inspect-brk 
+	(1)启动调试代理; (2)监听默认地址和端口(127.0.0.1:9229); (3)用户代码启动前断点(此时将我们的代码包裹在一个函数中)
+--config 所配置的是你自己要debug的文件，你需要在文件的开头或者你需要debug的地方输入debugger
+```
+"debug": "node --inspect-brk ./node_modules/webpack/bin/webpack.js --config ./build/webpack.prod.js"
+```
+之后我们运用到了 vscode 自带的debug功能，通过配置 launch.json 在该文件里添加`通过npm启动`的配置
+在runtimeArgs配置你自己自定义的script，我这边配置的是 run debug
+runtimeExecutable配置成npm即可，接下来你启动你自己的launch 就可以在vscode 里面调试了
+
+大概的调试过程是先会进入到webpack.js 里走打包流程，此时你可以直接跳过进入到你所需要debug的文件里就可以debug你自己的内容了；

@@ -1,13 +1,12 @@
 /*
- * @Author: xiaohu
- * @Date: 2023-08-16 10:31:10
+ * @Author: lzy-Jerry
+ * @Date: 2023-08-20 22:08:13
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-20 22:54:29
- * @FilePath: \react-typescript-template\build\webpack.prod.js
+ * @LastEditTime: 2023-08-21 23:01:59
  * @Description: 
  */
-
 /** @type {import('webpack').Configuration} */
+debugger
 
 const globAll = require('glob-all')
 const path = require("path")
@@ -21,6 +20,8 @@ const { PurgeCSSPlugin } = require('purgecss-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 // NOTE 自定义插件用于计算打包后的dist文件大小
 const BuildFileSizePlugin = require('../plugins/BuildFileSizePlugin.ts')
+// NOTE 自定义插件主要用于理解 compiler 和 compilation对象的各个hooks（生命周期）
+const CustomPlugin = require('../plugins/CustomPlugin.ts')
 
 module.exports = merge(baseConfig, {
   mode: 'production',
@@ -67,7 +68,8 @@ module.exports = merge(baseConfig, {
       minRatio: .8 // 压缩率
     }),
     // NOTE 计算打包后dist文件大小
-    new BuildFileSizePlugin()
+    // new BuildFileSizePlugin(),
+    new CustomPlugin()
   ],
   optimization: {
     splitChunks: {

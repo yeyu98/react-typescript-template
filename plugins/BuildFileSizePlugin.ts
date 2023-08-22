@@ -2,7 +2,7 @@
  * @Author: lzy-Jerry
  * @Date: 2023-08-20 10:16:58
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-21 20:06:21
+ * @LastEditTime: 2023-08-21 20:28:16
  * @Description: 
  */
 // chalk 4.0版本支持cjs
@@ -12,7 +12,7 @@ const toKb = (number) => (number / 1024).toFixed(2)
 
 class BuildFileSizePlugin {
     apply(complier) {
-        // 打包输出dist之前
+        // NOTE 打包输出dist之前
         complier.hooks.emit.tap("buildFileSize", (compilation) => {
             // 构建之后的产物内容 ===>>> dist内容
             let totalSize = 0
@@ -22,7 +22,6 @@ class BuildFileSizePlugin {
                 totalSize += size
                 console.log(green(`${name} size--->>>`), yellow(`${toKb(size)}KB`))
             }
-            // console.log('\x1b[33m%s', '我是黄色文字','我还是黄色文字');
             console.log(yellow(`total size--->>>`,`${toKb(totalSize)}KB`))
         })
         // 打包完成

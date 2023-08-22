@@ -9,7 +9,8 @@
     "dev:pre": "cross-env NODE_ENV=development BASE_ENV=pre webpack-dev-server -c build/webpack.dev.js",
     "dev:prod": "cross-env NODE_ENV=development BASE_ENV=prod webpack-dev-server -c build/webpack.dev.js",
     "build:analy": "cross-env NODE_ENV=production BASE_ENV=prod webpack -c build/webpack.analy.js",
-    "build": "webpack -c build/webpack.prod.js"
+    "build": "webpack -c build/webpack.prod.js",
+    "debug": "node --inspect-brk ./node_modules/webpack/bin/webpack.js --config ./build/webpack.prod.js"
   },
   "keywords": [],
   "author": "",
