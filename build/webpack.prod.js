@@ -2,7 +2,7 @@
  * @Author: lzy-Jerry
  * @Date: 2023-08-20 22:08:13
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-21 23:01:59
+ * @LastEditTime: 2023-08-22 22:43:28
  * @Description: 
  */
 /** @type {import('webpack').Configuration} */
@@ -20,8 +20,14 @@ const { PurgeCSSPlugin } = require('purgecss-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 // NOTE 自定义插件用于计算打包后的dist文件大小
 const BuildFileSizePlugin = require('../plugins/BuildFileSizePlugin.ts')
-// NOTE 自定义插件主要用于理解 compiler 和 compilation对象的各个hooks（生命周期）
+// NOTE 自定义插件主要用于输出dist文件夹内各文件大小的md文件
 const CustomPlugin = require('../plugins/CustomPlugin.ts')
+// NOTE 自定义插件用于向js文件插入 注释
+const NotePlugin = require('../plugins/NotePlugin.ts')
+// NOTE 自定义插件用于执行理解compiler的重要生命周期
+const CompilerHooksPlugin = require('../plugins/CompilerHooksPlugin.ts')
+
+
 
 module.exports = merge(baseConfig, {
   mode: 'production',
@@ -69,7 +75,9 @@ module.exports = merge(baseConfig, {
     }),
     // NOTE 计算打包后dist文件大小
     // new BuildFileSizePlugin(),
-    new CustomPlugin()
+    // new CustomPlugin()
+    // new NotePlugin()
+    new CompilerHooksPlugin()
   ],
   optimization: {
     splitChunks: {
