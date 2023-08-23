@@ -2,7 +2,7 @@
  * @Author: lzy-Jerry
  * @Date: 2023-08-16 21:05:57
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-22 23:12:43
+ * @LastEditTime: 2023-08-23 20:22:17
  * @Description: 
  */
 
@@ -136,8 +136,8 @@ module.exports = {
     //   template: path.resolve(__dirname, '../index.html'),
     //   inject: true
     // }),
-    // // NOTE 注入自定义环境变量
-    // new DefinePlugin(definitions),
+    // NOTE 注入自定义环境变量
+    new DefinePlugin(definitions),
   ],
   cache: {
     type: "filesystem" // 使用文件缓存
