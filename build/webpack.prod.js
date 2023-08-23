@@ -2,7 +2,7 @@
  * @Author: lzy-Jerry
  * @Date: 2023-08-20 22:08:13
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-22 22:43:28
+ * @LastEditTime: 2023-08-23 20:49:55
  * @Description: 
  */
 /** @type {import('webpack').Configuration} */
@@ -26,6 +26,10 @@ const CustomPlugin = require('../plugins/CustomPlugin.ts')
 const NotePlugin = require('../plugins/NotePlugin.ts')
 // NOTE 自定义插件用于执行理解compiler的重要生命周期
 const CompilerHooksPlugin = require('../plugins/CompilerHooksPlugin.ts')
+
+// NOTE 自定义插件用于创建版本号
+const BuildInjectVersionPlugin = require('../plugins/BuildInjectVersionPlugin.ts')
+
 
 
 
@@ -77,7 +81,11 @@ module.exports = merge(baseConfig, {
     // new BuildFileSizePlugin(),
     // new CustomPlugin()
     // new NotePlugin()
-    new CompilerHooksPlugin()
+    // new CompilerHooksPlugin()
+    new BuildInjectVersionPlugin({
+      filename: 'version',
+      ext: 'json'
+  })
   ],
   optimization: {
     splitChunks: {

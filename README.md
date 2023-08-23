@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-23 20:21:36
+ * @LastEditTime: 2023-08-23 21:09:19
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -169,6 +169,7 @@ complier.hooks.执行阶段.tap函数('插件名称', (阶段回调参数) => {}
     - chunks：由多个modules组成的chunk，例如我们项目中拆分出来的vendors是一个chunk，main是一个chunk，common是一个chunk；
     - assets：可以获取到所有的打包结果；
       - 如果需要修改某个dist文件里面的内容需要通过source以及size来改变；
+      - 遍历assets目前只能通过Object.keys的方式获取到对应的assets.source()；
     - hooks：compilation对应的hook用于compilation编译模块时在不同的阶段添加或修改逻辑；
       - buildModule：模块构建开始之前；
       - seal：构建完成，封装；
