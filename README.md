@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-24 23:42:56
+ * @LastEditTime: 2023-08-25 00:37:28
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -145,7 +145,7 @@ webpack-merge：配置合并
 - `<a>https://blog.csdn.net/zxd1435513775/article/details/125386977</a>`
 
 complier.hooks.执行阶段.tap函数('插件名称', (阶段回调参数) => {})
-- complier对象：控制整个webpack执行流程，相当于流程控制器；
+- complier对象：控制整个webpack执行流程，相当于流程控制器，可以在不同流程中修改流水线产物；
   - hooks
     - watchRun(AsyncSeriesHook): 在开发环境下监听文件变化，当文件发生变化就会重新创建一次compilation对象，重新进行一次资源模块处理；
     - run(AsyncSeriesHook): 开始构建之前；
@@ -164,7 +164,7 @@ complier.hooks.执行阶段.tap函数('插件名称', (阶段回调参数) => {}
   - sync or async
     - AsyncSeriesHook：串行执行异步回调前面一个回调执行完成之后后一个回调才开始执行，最终执行时间是所有任务的总和；
     - AsyncParallelHook：并发执行异步回调可以参考 Promise.all所有的任务同时进行，最终执行的时间看这几个任务中最长的那个；
-- compilation对象：主要作用是对各个模块进行编译、依赖分析、优化、封存；
+- compilation对象：能够访问所有的模块以及模块之间的依赖（循环依赖），主要作用是对分析各个模块以及它们的依赖并进行编译，在编译阶段会对模块加载(load)、封存(seal)、优化(optimize)、 分块(chunk)、哈希(hash)和重新创建(restore)；
   - compilation
     - modules：可以访问所有的模块，每个文件对应着一个模块；
     - chunks：由多个modules组成的chunk，例如我们项目中拆分出来的vendors是一个chunk，main是一个chunk，common是一个chunk；
@@ -176,7 +176,6 @@ complier.hooks.执行阶段.tap函数('插件名称', (阶段回调参数) => {}
       - seal：构建完成，封装；
       - optimize：优化阶段触发；
       - reviveChunks：整理chunks；
-      - seal
 - Tapable
   - tap：同步钩子；
   - tapAsync：异步钩子通过callback告知webpack逻辑执行完成；
