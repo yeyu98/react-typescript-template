@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-23 21:09:19
+ * @LastEditTime: 2023-08-24 23:42:56
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -147,7 +147,8 @@ webpack-merge：配置合并
 complier.hooks.执行阶段.tap函数('插件名称', (阶段回调参数) => {})
 - complier对象：控制整个webpack执行流程，相当于流程控制器；
   - hooks
-    - watchRun: 在开发环境下监听文件变化，当文件发生变化就会重新创建一次compilation对象，重新进行一次资源模块处理；
+    - watchRun(AsyncSeriesHook): 在开发环境下监听文件变化，当文件发生变化就会重新创建一次compilation对象，重新进行一次资源模块处理；
+    - run(AsyncSeriesHook): 开始构建之前；
     
     - compile：创建compilation之前；
     - thisCompilation：初始化compilation时调用，触发compilation事件之前调用；
