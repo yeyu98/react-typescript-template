@@ -2,7 +2,7 @@
  * @Author: lzy-Jerry
  * @Date: 2023-08-23 20:23:30
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-25 00:18:25
+ * @LastEditTime: 2023-08-25 00:25:48
  * @Description: 
  */
 /**
@@ -10,7 +10,7 @@
  * 存在则自动修改version.json文件中的版本号（防止打包后忘记更改版本号）
  * */ 
 
-// run
+// run beforeRun感觉都可以因为这两个阶段都正式开始打包
 // 直接使用fs 操作public判断有无version.json文件有则替换内容无则创建version.json
 
 // emit: 可以判断打包后的产物有无version.json，若有则替换内容，没有则创建version.json
@@ -30,7 +30,7 @@ class BuildInjectVersionPlugin {
     }
     apply(compiler) {
         const { filename, ext  } = this.options
-        compiler.hooks.run.tapPromise('injectVersion', () => new Promise((resolve, reject) => {
+        compiler.hooks.beforeRun.tapPromise('injectVersion', () => new Promise((resolve, reject) => {
             // 判断public下是否有文件version.json
             // 有则修改内容，没有则写入一个json文件
             const versionPath = path.resolve(__dirname, `../public/${filename}.${ext}`)
