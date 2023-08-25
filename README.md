@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-25 00:37:28
+ * @LastEditTime: 2023-08-25 22:22:55
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -143,7 +143,7 @@ webpack-merge：配置合并
 
 - webpack构建流程
 - `<a>https://blog.csdn.net/zxd1435513775/article/details/125386977</a>`
-
+- 相关链接 `<a>https://webpack.docschina.org/api/compiler-hooks/</a>` `<a>https://webpack.docschina.org/api/compilation-hooks/</a>`
 complier.hooks.执行阶段.tap函数('插件名称', (阶段回调参数) => {})
 - complier对象：控制整个webpack执行流程，相当于流程控制器，可以在不同流程中修改流水线产物；
   - hooks
