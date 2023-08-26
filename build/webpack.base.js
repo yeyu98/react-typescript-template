@@ -2,7 +2,7 @@
  * @Author: lzy-Jerry
  * @Date: 2023-08-16 21:05:57
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-23 20:22:17
+ * @LastEditTime: 2023-08-26 14:55:09
  * @Description: 
  */
 
@@ -76,7 +76,9 @@ module.exports = {
           isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
-          'less-loader'
+          'less-loader',
+          // NOTE 自定义loader
+          'custom-loader'
         ],
         exclude: ['/node_modules']
       }, 
@@ -129,6 +131,11 @@ module.exports = {
       '@': path.resolve(__dirname, '../src')
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx']
+  },
+  resolveLoader: {
+    // 根据配置先后顺序 先在node_modules中查找若没有则在loaders中查找
+    modules: ['node_modules', path.resolve(__dirname, '../loaders')],
+    extensions: ['.js', '.json', '.ts']
   },
   plugins: [
     // NOTE 自定义处理index.html

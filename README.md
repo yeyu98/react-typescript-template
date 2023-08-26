@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-25 22:22:55
+ * @LastEditTime: 2023-08-26 14:54:05
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -181,6 +181,44 @@ complier.hooks.执行阶段.tap函数('插件名称', (阶段回调参数) => {}
   - tapAsync：异步钩子通过callback告知webpack逻辑执行完成；
   - tapPromise：异步钩子通过返回promise告知webpack逻辑执行完成；
 # 自定义loader
+- loader的本质是一个node模块，由于webpack只能识别js或json因此在webpack中的作用相当于翻译机，将其他类型的文件通过模块转换成js以便告诉webpack如何处理；
+- options
+- 特性
+  - 单一职责原则：每个loader都只做一件事件；
+  - 链式调用：执行原则是根据配置从下到上，从右到左执行且每个loader都能拿到上一个loader处理过后的source；
+  - 遵循webpack制定的loader标准即输入和输出都得是js（string || buffer）；
+  - 模块化：每个loader都是一个模块；
+  - 无状态：每个loader都应纯粹不保留任何状态；
+- 同步loader
+  - 返回值
+    - 通过this.callback
+      ```
+      this.callback(
+        // 当无法转换源内容时，给 Webpack 返回一个 Error
+        err: Error | null,
+        // 源内容转换后的内容
+        content: string | Buffer,
+        // 用于把转换后的内容得出原内容的 Source Map，方便调试
+        sourceMap?: SourceMap,
+        // 如果本次转换为原内容生成了 AST 语法树，可以把这个 AST 返回，
+        // 以方便之后需要 AST 的 Loader 复用该 AST，以避免重复生成 AST，提升性能
+        abstractSyntaxTree?: AST
+      );
+      ```
+    - 通过return source；
+- 异步loader：当某个loader里面包含某些异步任务的时候可以使用
+  - 使用`const callback = this.async()` 开启异步
+  - 通过callback返回结果类似this.callback
+- 配置自定义loader路径
+  - 可以通过`path.resolve(__dirname, '../loaders/custom-loader.ts')`的方式use；
+  - 配置`resolveLoader`来指定查找loader的位置
+    - 根据配置先后顺序查找对应的loader；
+    ```
+    resolveLoader: {
+      // 根据配置先后顺序 先在node_modules中查找若没有则在loaders中查找
+      modules: ['node_modules', path.resolve(__dirname, '../loaders')]
+    }
+    ```
 # 项目目录
 
 ```
