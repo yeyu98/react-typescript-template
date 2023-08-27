@@ -2,11 +2,10 @@
  * @Author: lzy-Jerry
  * @Date: 2023-08-20 22:08:13
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-23 20:49:55
+ * @LastEditTime: 2023-08-26 15:36:42
  * @Description: 
  */
 /** @type {import('webpack').Configuration} */
-debugger
 
 const globAll = require('glob-all')
 const path = require("path")

@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-26 14:54:05
+ * @LastEditTime: 2023-08-26 16:19:09
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -182,7 +182,10 @@ complier.hooks.执行阶段.tap函数('插件名称', (阶段回调参数) => {}
   - tapPromise：异步钩子通过返回promise告知webpack逻辑执行完成；
 # 自定义loader
 - loader的本质是一个node模块，由于webpack只能识别js或json因此在webpack中的作用相当于翻译机，将其他类型的文件通过模块转换成js以便告诉webpack如何处理；
-- options
+- loader工具包
+  - `loader-utils` 
+  - `loader-schema`
+- 处理传参：通过工具包getOptions获取可以是字符串也可以是对象；
 - 特性
   - 单一职责原则：每个loader都只做一件事件；
   - 链式调用：执行原则是根据配置从下到上，从右到左执行且每个loader都能拿到上一个loader处理过后的source；
@@ -260,8 +263,8 @@ https://juejin.cn/post/7111922283681153038#heading-4
 - 为什么webpack无法监听配置文件的修改而vite可以做到呢？
   - 因为vite的配置文件最终只有一个 vite.config.ts ~_~;
 
-- 执行该plugin时需要注释一下 HtmlWebpackPlugin 否则会有影响，猜测使用了相同的hook
-- 那为什么会影响到这边的compilation和afterCompiler执行两次呢？
+- 执行该plugin时需要注释一下 HtmlWebpackPlugin 否则会有影响，猜测使用了相同的hook，那为什么会影响到这边的compilation和afterCompiler执行两次呢？
+- custom-style-loader返回的其实只有字符串为什么能正常运行而custom-css-loader 返回字符串却不行?
 
 
 # 关于debug

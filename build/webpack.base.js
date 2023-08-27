@@ -2,7 +2,7 @@
  * @Author: lzy-Jerry
  * @Date: 2023-08-16 21:05:57
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-26 14:55:09
+ * @LastEditTime: 2023-08-26 15:55:46
  * @Description: 
  */
 
@@ -70,15 +70,28 @@ module.exports = {
         ],
         exclude: ['/node_modules']
       }, 
+      // {
+      //   test: /\.less$/,
+      //   use: [
+      //     isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+      //     'css-loader',
+      //     'postcss-loader',
+      //     'less-loader',
+      //   ],
+      //   exclude: ['/node_modules']
+      // }, 
+      // NOTE 自定义loader
       {
         test: /\.less$/,
         use: [
-          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'less-loader',
-          // NOTE 自定义loader
-          'custom-loader'
+          'custom-style-loader',
+          {
+            loader: 'custom-css-loader',
+            options: {
+              name: 'css-loader'
+            }
+          },
+          'custom-less-loader',
         ],
         exclude: ['/node_modules']
       }, 
@@ -139,10 +152,10 @@ module.exports = {
   },
   plugins: [
     // NOTE 自定义处理index.html
-    // new HtmlWebpackPlugin({
-    //   template: path.resolve(__dirname, '../index.html'),
-    //   inject: true
-    // }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../index.html'),
+      inject: true
+    }),
     // NOTE 注入自定义环境变量
     new DefinePlugin(definitions),
   ],
