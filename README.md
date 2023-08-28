@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:26:31
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-27 22:26:51
+ * @LastEditTime: 2023-08-28 22:48:56
  * @FilePath: \react-typescript-template\README.md
  * @Description: 
 -->
@@ -261,7 +261,29 @@ addEntry === make（从入口开始将不同的模块转换成module，调用loa
 - 生成阶段：
   - 输出资源(seal)：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 Chunk，再把每个 Chunk 转换成一个单独的文件加入到输出列表，这步是可以修改输出内容的最后机会；
   - 写入文件系统(emit)：在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统；
-## 文件监听与热更新
+
+## 文件监听与热更新HMR
+在开发时文件发生了变动webpack是如何监听到文件的变化的呢？
+文件发生变化重新build保存到内存之后是如何通知到浏览器的呢？
+build之后的产物是如何做到增量热更新的呢？
+
+webpack-dev-server源码
+
+- setupHooks
+  - invalid告知compilation编译完成； 
+  - done这个hooks里通过websocket向客户端发送 最新更新模块的信息（hash值），告知模块是否更新；
+- setupApp：开启一个express服务；
+- setupHostHeaderCheck：校验配置的Host请求头是否合理；
+- setupDevMiddleware：初始化webpackDevMiddleware；
+- setupBuiltInRoutes
+- setupWatchFiles
+- setupWatchStaticFiles
+- setupMiddlewares
+- createServer
+
+
+
+
 ## tree-shaking
 
 

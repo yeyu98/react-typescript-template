@@ -2,7 +2,7 @@
  * @Author: xiaohu
  * @Date: 2023-08-16 10:31:41
  * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-22 20:46:19
+ * @LastEditTime: 2023-08-28 23:03:29
  * @FilePath: \react-typescript-template\src\App.tsx
  * @Description: 
  */
@@ -36,6 +36,7 @@ function App(props: Props) {
   }
 
   useEffect(() => {
+    console.log(`process.env.NODE_ENV：${process.env.NODE_ENV}`)
     console.log(`process.env.NODE_ENV：${process.env.NODE_ENV}`)
     console.log(`process.env.BASE_ENV：${process.env.BASE_ENV}`)
   }, [])
