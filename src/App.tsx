@@ -1,8 +1,15 @@
 /*
+ * @Author: yeyu98
+ * @Date: 2023-08-20 22:08:13
+ * @LastEditors: yeyu98
+ * @LastEditTime: 2024-03-03 14:30:51
+ * @Description: 
+ */
+/*
  * @Author: xiaohu
  * @Date: 2023-08-16 10:31:41
- * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-28 23:03:29
+ * @LastEditors: yeyu98
+ * @LastEditTime: 2024-03-03 14:29:38
  * @FilePath: \react-typescript-template\src\App.tsx
  * @Description: 
  */
@@ -12,6 +19,8 @@ import DemoTwo from "@/components/DemoTwo"
 import fivekb from "@/assets/images/5kb.png"
 import twitykb from "@/assets/images/22kb.png"
 import './App.less'
+import axios from 'axios'
+import { change } from './change'
 
 const LazyLoadPreFetchDemo = lazy(() => import(
   /* webpackChunkName: "PreFetchDemo" */ 
@@ -33,6 +42,25 @@ function App(props: Props) {
   const onChange = (e: any) => {
     console.log(e)
     setCounts(e.target.value)
+  }
+  const checkNewVersion = () => {
+    axios.get(`/version.json?timestamp=${Date.now()}`).then(res => {
+      const {version} = res.data
+      const localVersion = localStorage.getItem('version')
+      if(localVersion && localVersion !== version) {
+        localStorage.setItem('version', version)
+        const result = confirm('检测到新版本，是否刷新页面')
+        if(result) {
+          window.location.reload()
+        }
+      } else {
+        localStorage.setItem('version', version)
+      }
+    })
+  }
+
+  const handleFileChange = () => {
+    change()
   }
 
   useEffect(() => {
@@ -57,6 +85,8 @@ function App(props: Props) {
       <Demo />
       <br />
       <h3>资源懒加载</h3>
+      <button onClick={checkNewVersion}>检测是否有新版本</button>
+      <button onClick={handleFileChange}>文件变更</button>
       <button onClick={() => setShow(!show)}>加载</button>
       {
         show && <Suspense fallback={<div>加载中...</div>}>
