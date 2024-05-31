@@ -1,8 +1,8 @@
 /*
  * @Author: lzy-Jerry
  * @Date: 2023-08-20 22:08:13
- * @LastEditors: lzy-Jerry
- * @LastEditTime: 2023-08-26 15:36:42
+ * @LastEditors: yeyu98
+ * @LastEditTime: 2024-05-31 16:17:41
  * @Description: 
  */
 /** @type {import('webpack').Configuration} */
@@ -28,6 +28,8 @@ const CompilerHooksPlugin = require('../plugins/CompilerHooksPlugin.ts')
 
 // NOTE 自定义插件用于创建版本号
 const BuildInjectVersionPlugin = require('../plugins/BuildInjectVersionPlugin.ts')
+// NOTE 自定义插件用于通过Dependency & Template向source中插入一些代码
+const InsertDependencyPlugin = require('../plugins/InsertDependencyPlugin.ts')
 
 
 
@@ -81,10 +83,11 @@ module.exports = merge(baseConfig, {
     // new CustomPlugin()
     // new NotePlugin()
     // new CompilerHooksPlugin()
-    new BuildInjectVersionPlugin({
-      filename: 'version',
-      ext: 'json'
-  })
+    // new BuildInjectVersionPlugin({
+    //   filename: 'version',
+    //   ext: 'json'
+    // })
+    new InsertDependencyPlugin()
   ],
   optimization: {
     splitChunks: {
